@@ -95,8 +95,9 @@ table {
   border-spacing: 0;
 }
 
-image,
+img,
 fieldset {
+  vertical-align: bottom;
   border: none;
 }
 
