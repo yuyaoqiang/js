@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Header from "./containers/header";
+import {} from "react-redux"
+import App from "./App";
 import "./styles/common.scss";
-ReactDOM.render(<Header />, document.getElementById("root"));
+ReactDOM.render(<App />, document.getElementById("root"));

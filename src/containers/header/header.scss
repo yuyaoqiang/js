@@ -25,17 +25,117 @@
     }
     .header-container{
       width: 960px;
-      background: #ea6f5a;
-      float: left;
+      margin: 0 auto;
+      ul{
+        float: left;
+        list-style: none;
+        li{
+          margin-right: 15px;
+        }
+        .container-index{
+          font-size: 17px;
+          color: #ea6f5a;
+          padding: 0 20px;
+          cursor: pointer;
+        }
+        .container-down{
+          font-size: 17px;
+          color: #333;
+          padding: 0 15px;
+          cursor: pointer;
+        }
+        .container-down:hover{
+          color: #fff;
+          background: #969696;
+        }
+        .slide-enter{
+          transition: all .3s ease-in
+        }
+        .slide-enter-active{
+          width: 240px;
+        }
+        .slide-enter{
+          transition: all .3s ease-in
+        }
+        .slide-enter-active{
+          width: 240px;
+        }
+        .slide-exit{
+          transition: all .3s ease-in
+        }
+        .slide-exit-active{
+          width: 160px;
+        }
+        .container-input{
+          height: 38px;
+          width: 160px;
+          font-size: 14px;
+          padding: 0 40px 0 20px;
+          box-sizing: border-box;
+          border: 1px solid #eee;
+          background: #eee;
+          border-radius: 20px;
+        }
+        .container-focuk{
+          height: 38px;
+          width: 250px;
+          font-size: 14px;
+          padding: 0 40px 0 20px;
+          box-sizing: border-box;
+          border: 1px solid #eee;
+          background: #eee;
+          border-radius: 20px;
+        }
+        .focuk-iconft{
+          position: absolute;
+          top: 13px;
+          right: 5px;
+          display: block;
+          border-radius: 50%;
+          border-radius: 50%;
+          height: 32px;
+          width: 32px;
+          text-align: center;
+          line-height: 32px;
+          font-size: 20px;
+          color: #fff;
+          background: #878787;
+        }
+        .input-serach{
+          position: absolute;
+          top: 13px;
+          right: 5px;
+          display: block;
+          border-radius: 50%;
+          border-radius: 50%;
+          height: 32px;
+          width: 32px;
+          text-align: center;
+          line-height: 32px;
+          font-size: 20px;
+        }
+        .container-li{
+          position: relative;
+        }
+      }
     }
     .header-rigth-logoin{
       float: right;
-      .login{
+      .setting,.login{
+        font-size: 15px;
+        color: #969696;
+        margin: 15px;
+        cursor: pointer;
+      }
+      .register{
         height: 38px;
         width: 80px;
         color: #ea6f5a;
         border: 1px solid #ea6f5a;
         background-color: transparent;
+      }
+      .register:hover{
+        background:rgba(236,97,73,.05);
       }
       .write{
         height: 40px;
@@ -43,13 +143,16 @@
         color: #fff;
         background: #ea6f5a;
       }
-      .login,.write{
+      .register,.write{
         display: inline-block;
         cursor: pointer;
         border-radius: 20px;
         text-align: center;
         line-height: 40px;
         margin: 8px 15px 0;
+      }
+      .write:hover{
+        background: #d3563f;
       }
     }
   }
