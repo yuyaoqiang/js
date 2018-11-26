@@ -1,0 +1,26 @@
+.header-wrap{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 50px;
+  background: red;
+  border-color: #f0f0f0;
+  margin-bottom: 15px;
+  .header-content{
+      min-width: 768px;
+      max-width: 1440px;
+      margin: 0 auto;
+      background-color: gray;
+      overflow: hidden;
+    .header-left-title{
+      float: left;
+    }
+    .header-input{
+      float: left;
+    }
+    .header-rigth-logoin{
+      float: rigth;
+    }
+  }
+}
