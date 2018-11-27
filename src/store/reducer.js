@@ -3,15 +3,16 @@ const defaultState = {
 };
 
 export default (state = defaultState, action) => {
-  if (action.type === "search_foucs") {
-    return {
-      isFocus: true
-    };
+  switch (action.type) {
+    case "search_foucs":
+      return {
+        isFocus: true
+      };
+    case "search_blur":
+      return {
+        isFocus: false
+      };
+    default:
+      return state;
   }
-  if (action.type === "search_blur") {
-    return {
-      isFocus: false
-    };
-  }
-  return state;
 };

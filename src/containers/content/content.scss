@@ -1,0 +1,20 @@
+body{
+    padding-top: 56px !important;
+}
+.content-wrap{
+    width: 960px;
+    margin: 0 auto;
+    overflow: hidden;
+    .content-left-wrap{
+        float: left;
+        width: 66%;
+        padding: 30px 0;
+    }
+    .content-right-wrap{
+        margin-top: -2px;
+        padding: 30px 0;
+        float: left;
+        width: 30%;
+        margin-left: 4%;
+    }
+}
