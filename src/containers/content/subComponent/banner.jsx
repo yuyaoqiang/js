@@ -37,8 +37,8 @@ class Banner extends React.Component {
           </div>
         </div>
         <div className="swiper-pagination" />
-        <div class="swiper-button-prev swiper-button-white" />
-        <div class="swiper-button-next swiper-button-white" />
+        <div className="swiper-button-prev swiper-button-white" />
+        <div className="swiper-button-next swiper-button-white" />
       </div>
     );
   }

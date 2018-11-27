@@ -102,3 +102,51 @@
   }
 }
 /**title-list-------------------end**/
+/**siderbar-------------------start**/
+.side-wrap{
+  .down-img{
+    position: relative;
+    display: block;
+    width: 100%;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    background-color: #fff;
+    border: 1px solid #f0f0f0;
+    overflow: hidden;
+    box-sizing: border-box;
+    img{
+      float: left;
+      height: 60px;
+      width: 60px;
+    }
+    .side-text{
+      float: left;
+      line-height: 20px;
+      margin: 10px;
+      vertical-align: middle;
+      .down-text{
+        color: #333;
+
+      }
+      .creat-text{
+        color: #b4b4b4;
+        font-size: 13px;
+      }
+    }
+  }
+  .recommend-authors{
+    .author-wrap{
+      font-size: 14px;
+      color: #999;
+      span{
+
+      }
+      .change-author{
+        float: right;
+      }
+    }
+   
+  }
+}
+/**siderbar-------------------end**/
