@@ -2,9 +2,11 @@
   "name": "my-js",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:3000",
   "dependencies": {
     "@babel/core": "7.1.0",
     "@svgr/webpack": "2.4.1",
+    "axios": "^0.18.0",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "9.0.0",
     "babel-jest": "23.6.0",
@@ -28,7 +30,6 @@
     "fork-ts-checker-webpack-plugin-alt": "0.4.14",
     "fs-extra": "7.0.0",
     "html-webpack-plugin": "4.0.0-alpha.2",
-    "http-proxy-middleware": "^0.19.1",
     "identity-obj-proxy": "3.0.0",
     "immutable": "^4.0.0-rc.12",
     "jest": "23.6.0",
@@ -133,6 +134,8 @@
   },
   "devDependencies": {
     "babel-plugin-transform-decorators-legacy": "^1.3.5",
+    "http-proxy-middleware": "^0.19.1",
     "redux-devtools-extension": "^2.13.7"
-  }
+  },
+  "proxy": "http://localhost:3000"
 }

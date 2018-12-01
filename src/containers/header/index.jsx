@@ -3,15 +3,9 @@ import { CSSTransition } from "react-transition-group";
 import { connect } from "react-redux";
 import { actionCreator } from "./store";
 import "./header.scss";
-import axios from "axios";
 class Header extends React.Component {
-
   componentDidMount(){
-      axios.get("/api/json").then(
-        (res)=>{
-          console.log(res)
-        }
-      ).catch()
+
   }
   render() {
     let { isFocus } = this.props;

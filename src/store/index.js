@@ -1,9 +1,8 @@
 import { createStore, applyMiddleware, compose } from "redux";
-import { combineReducers } from "redux-immutable";
 import thunk from "redux-thunk";
-import { reducer as headerReducer } from "../containers/header/store";
+import combineReducer from "./reducers"
 const store = createStore(
-  combineReducers({ header: headerReducer }),
+  combineReducer,
   compose(
     applyMiddleware(thunk),
     window.devToolsExtension ? window.devToolsExtension() : f => f

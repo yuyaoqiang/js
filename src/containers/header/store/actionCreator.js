@@ -1,21 +1,14 @@
-import * as actionTypes  from "./actionTypes"
-import axios from "axios"
+import * as actionTypes from "./actionTypes";
+import { ajaxUrl, axios } from "../../../config";
 // export const setFoucsAction = data => ({
 //   type: actionTypes.SEARCH_FOUCS,
 //   data: data
 // });
-export const setBlurAction = data => ({
+export const setBlurAction = () => ({
   type: actionTypes.SEARCH_BLUR,
-  data: data
+  data: null
 });
-export const setFoucsAction = data => {
-     return axios.get("/index").then(res=>{
-        console.log(res.data)
-        return {
-          type: actionTypes.SEARCH_FOUCS,
-             data: res.data
-        }
-      }).catch(err=>{
-        console.log(err)
-      })
-};
+export const setFoucsAction = () => ({
+  type: actionTypes.SEARCH_FOUCS,
+  data: null
+});
