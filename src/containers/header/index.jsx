@@ -4,9 +4,33 @@ import { connect } from "react-redux";
 import { actionCreator } from "./store";
 import "./header.scss";
 class Header extends React.Component {
+  getListAear() {
+    const { isFocus, list, page, totalPage, isShow } = this.props;
+    let array = list.toJS();
+    let pageList = [];
+    if (array.length) {
+      for (let i = (page - 1) * 10; i < page * 10; i++) {
+        pageList.push(
+          <li key={array[i]}>
+            <a href="/">{array[i]}</a>
+          </li>
+        );
+      }
+    }
+    return isFocus || isShow ?((
+      <div className="search-trending">
+        <div className="trending-header">
+          <span>热门搜索</span>
+          <a href="#" onClick={()=>this.props.changePage(page,totalPage)}>换一批</a>
+        </div>
+        <ul className="trending-tag-wrap">{pageList}</ul>
+      </div>
+    )):(
+      <div></div>
+    )
+  }
   render() {
-    let  isFocus = this.props.header.get("isFocus");
-    let  isShow = this.props.header.get("isShow");
+    const { isFocus, list, isShow } = this.props;
     return (
       <React.Fragment>
         <header className="header-wrap">
@@ -40,13 +64,13 @@ class Header extends React.Component {
                       }
                       type="text"
                       placeholder="搜索"
-                      onFocus={this.props.handleFoucs}
+                      onFocus={() => this.props.handleFoucs(list)}
                       onBlur={this.props.handleBlur}
                     />
                   </CSSTransition>
                   <i
                     className={
-                      isFocus 
+                      isFocus
                         ? " iconfont icon-feather-blur-light-b input-serach focuk-iconft"
                         : "iconfont icon-feather-blur-light-b input-serach"
                     }
@@ -54,37 +78,11 @@ class Header extends React.Component {
                   <div
                     onMouseOver={this.props.handleShowPage}
                     onMouseLeave={this.props.handleNotShowPage}
-                    className={isFocus || isShow ? "search-tip" : "search-tip hide"}
+                    className={
+                      isFocus || isShow ? "search-tip" : "search-tip hide"
+                    }
                   >
-                    <div className="search-trending">
-                      <div className="trending-header">
-                        <span>热门搜索</span>
-                        <a href="/">换一批</a>
-                      </div>
-                      <ul className="trending-tag-wrap">
-                        <li>
-                          <a href="/">交友交友</a>
-                        </li>
-                        <li>
-                          <a href="/">交友</a>
-                        </li>
-                        <li>
-                          <a href="/">交友</a>
-                        </li>
-                        <li>
-                          <a href="/">交友</a>
-                        </li>
-                        <li>
-                          <a href="/">交友</a>
-                        </li>
-                        <li>
-                          <a href="/">交友</a>
-                        </li>
-                        <li>
-                          <a href="/">交友</a>
-                        </li>
-                      </ul>
-                    </div>
+                    {this.getListAear()}
                   </div>
                 </li>
               </ul>
@@ -96,7 +94,13 @@ class Header extends React.Component {
   }
 }
 const mapSateToProps = state => {
-  return { header: state.get("header") };
+  return {
+    isFocus: state.getIn(["header", "isFocus"]),
+    list: state.getIn(["header", "list"]),
+    page: state.getIn(["header", "page"]),
+    totalPage: state.getIn(["header", "totalPage"]),
+    isShow: state.getIn(["header", "isShow"])
+  };
 };
 const mapDispatchToProps = dispatch => {
   return {
@@ -106,11 +110,19 @@ const mapDispatchToProps = dispatch => {
     handleNotShowPage() {
       dispatch(actionCreator.doNotShowAction());
     },
-    handleFoucs() {
+    handleFoucs(list) {
+      list.size === 0 && dispatch(actionCreator.getList());
       dispatch(actionCreator.setFoucsAction());
     },
     handleBlur() {
       dispatch(actionCreator.setBlurAction());
+    },
+    changePage(page,totalPage){
+      if(page<totalPage){
+        dispatch(actionCreator.doChangePage(page+1))
+      }else{
+        dispatch(actionCreator.doChangePage(1))
+      }
     }
   };
 };
