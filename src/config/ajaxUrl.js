@@ -1,6 +1,7 @@
-export const homeUrl = {
-    homeList:"/api/homeList.json",
-    autherlist:"/autherList",
-    bannerList:"/bannerList",
-    
-}
+export default {
+  home: {
+    homeList: "/api/homeList.json",
+    autherList: "/api/autherList.json",
+    bannerList: "/api/bannerList.json"
+  }
+};

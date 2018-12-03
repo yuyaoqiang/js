@@ -1,7 +1,8 @@
 import { fromJS } from "immutable";
 import { actionTypes } from "./index";
 const initState = fromJS({
-  isFocus: false
+  isFocus: false,
+  isShow:false
 });
 
 export default (state = initState, action) => {
@@ -10,6 +11,10 @@ export default (state = initState, action) => {
       return state.set("isFocus", true);
     case actionTypes.SEARCH_BLUR:
       return state.set("isFocus", false);
+    case actionTypes.SEARCH_PAGE_SHOW:
+      return state.set("isShow", true);
+    case actionTypes.SEARCH_PAGE_HEID:
+      return state.set("isShow", false);
     default:
       return state;
   }

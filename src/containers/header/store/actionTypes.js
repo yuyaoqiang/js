@@ -1,2 +1,5 @@
 export const SEARCH_FOUCS = "header/SEARCH_FOUCS"
 export const SEARCH_BLUR = "header/SEARCH_BLUR"
+export const SEARCH_PAGE_SHOW = "header/SEARCH_PAGE_SHOW"
+export const SEARCH_PAGE_HEID = "header/SEARCH_PAGE_HEID"
+export const SEARCH_PAGE_LIST = "header/SEARCH_PAGE_LIST"

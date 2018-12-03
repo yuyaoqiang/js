@@ -9,6 +9,7 @@ import { connect } from "react-redux";
 class Content extends React.Component {
   componentDidMount() {
     this.props.getHomeTitleList();
+    this.props.doAutherDataList();
   }
   render() {
     return (
@@ -19,7 +20,7 @@ class Content extends React.Component {
         </div>
         <div className="content-right-wrap">
           <Recommend />
-          <Siderbar />
+          <Siderbar autherList={this.props.autherList}/>
         </div>
       </div>
     );
@@ -27,11 +28,15 @@ class Content extends React.Component {
 }
 const stateToProps = state => {
   return {
-    homeList: state.getIn(["home", "homeList"])
+    homeList: state.getIn(["home", "homeList"]),
+    autherList: state.getIn(["home", "autherList"])
   };
 };
 const dispatchToprops = dispatch => {
   return {
+    doAutherDataList(){
+      dispatch(actionCreator.doAutherList())
+    },
     getHomeTitleList() {
       dispatch(actionCreator.getHomeTitleList());
     }

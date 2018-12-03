@@ -1,10 +1,10 @@
 {
-  "users": [
+  "data": [
     {
       "id": 6539412,
       "slug": "62fc150bab96",
-      "nickname": "琪官Kafka",
-      "avatar_source": "http://upload.jianshu.io/users/upload_avatars/6539412/50dad259-2c44-4d0d-9a5e-7bce3664cb6a.jpg",
+      "nickname": "阿栈",
+      "avatar_source": "http://upload.jianshu.io/users/upload_avatars/2558050/7761b285-2805-4534-9870-ba7dcc7538ec.jpg",
       "total_likes_count": 3732,
       "total_wordage": 357042,
       "is_following_user": false
@@ -12,8 +12,8 @@
     {
       "id": 2587459,
       "slug": "82854a3500fc",
-      "nickname": "穿着prada挤地铁",
-      "avatar_source": "http://upload.jianshu.io/users/upload_avatars/2587459/0c7e061f-e78e-4b09-b511-340846c4ea0f.jpg",
+      "nickname": "简书大学堂",
+      "avatar_source": "http://upload.jianshu.io/users/upload_avatars/3627484/eb973bb9-37ba-4d07-acec-850c0a66d1bb.png",
       "total_likes_count": 3301,
       "total_wordage": 340225,
       "is_following_user": false
@@ -21,7 +21,7 @@
     {
       "id": 13213889,
       "slug": "080bb4eac1c9",
-      "nickname": "无限猴子",
+      "nickname": "灰土豆",
       "avatar_source": "http://upload.jianshu.io/users/upload_avatars/13213889/7314c5cc-ca7f-4542-b914-2c8dffaf324d.jpg",
       "total_likes_count": 385,
       "total_wordage": 128462,
@@ -30,8 +30,8 @@
     {
       "id": 5545154,
       "slug": "898bb4ca481d",
-      "nickname": "徐林Grace",
-      "avatar_source": "http://upload.jianshu.io/users/upload_avatars/5545154/1a3d5ed6-9ad1-44b3-9457-3e6a29dd1b71.jpg",
+      "nickname": "念远怀人",
+      "avatar_source": "http://upload.jianshu.io/users/upload_avatars/7290998/f64f5ef0-def0-4b26-beb3-b9d88f060ba0.jpg",
       "total_likes_count": 4707,
       "total_wordage": 582835,
       "is_following_user": false
@@ -39,12 +39,13 @@
     {
       "id": 2631077,
       "slug": "90e981ba3d8d",
-      "nickname": "木清琳",
-      "avatar_source": "http://upload.jianshu.io/users/upload_avatars/2631077/dc99c361412c",
+      "nickname": "北美之北",
+      "avatar_source": "http://upload.jianshu.io/users/upload_avatars/3292545/78f2855a-80fd-419a-9fb2-1aeed39690f0.png",
       "total_likes_count": 2027,
       "total_wordage": 207329,
       "is_following_user": false
     }
   ],
-  "total_count": 5835
+  "total_count": 5835,
+  "success": true
 }
