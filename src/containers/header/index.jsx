@@ -37,7 +37,7 @@ class Header extends React.Component {
                   >
                     <input
                       className={
-                        isFocus ? "container-focuk" : "container-input"
+                        isFocus ? "container-focuk container-input" : "container-input"
                       }
                       type="text"
                       placeholder="搜索"
@@ -48,14 +48,14 @@ class Header extends React.Component {
                   <i
                     className={
                       isFocus
-                        ? " iconfont icon-feather-blur-light-b focuk-iconft "
+                        ? " iconfont icon-feather-blur-light-b input-serach focuk-iconft"
                         : "iconfont icon-feather-blur-light-b input-serach"
                     }
                   />
                    <div
                   // onMouseOver={handlDivFoucs}
                   // onMouseLeave={handlDivBlur}
-                  // className={isFocus||isHover ? "search-tip" : "search-tip hide"}
+                  className={isFocus ? "search-tip" : "search-tip hide"}
                 >
                   <div className="search-trending">
                     <div className="trending-header">
