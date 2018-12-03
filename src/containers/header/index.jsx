@@ -1,64 +1,61 @@
 import React from "react";
 import { CSSTransition } from "react-transition-group";
 import { connect } from "react-redux";
-import {
-  handleInputFocus,
-  handleInputBlur,
-  handlDivFoucs,
-  handlDivBlur
-} from "../../actions/header";
+import { actionCreator } from "./store";
 import "./header.scss";
+class Header extends React.Component {
+  render() {
+    let { isFocus } = this.props;
+    return (
+      <React.Fragment>
+        <header className="header-wrap">
+          <div className="header-content">
+            <div className="header-left-title">
+              <img
+                src="http://cdn2.jianshu.io/assets/web/nav-logo-4c7bbafe27adc892f3046e6978459bac.png"
+                alt="简书"
+              />
+            </div>
 
-const Header = props => {
-  const { isFocus, isHover,handleInputFocus, handleInputBlur ,handlDivFoucs,handlDivBlur } = props;
-  return (
-    <React.Fragment>
-      <header className="header-wrap">
-        <div className="header-content">
-          <div className="header-left-title">
-            <img
-              src="http://cdn2.jianshu.io/assets/web/nav-logo-4c7bbafe27adc892f3046e6978459bac.png"
-              alt="简书"
-            />
-          </div>
-
-          <div className="header-rigth-logoin">
-            <span className="register">注册</span>
-            <span className="write">写文章</span>
-          </div>
-          <div className="header-rigth-logoin">
-            <span className="setting">Aa</span>
-            <span className="login">登录</span>
-          </div>
-          <div className="header-container clearfix">
-            <ul>
-              <li className="fl container-index">首页</li>
-              <li className="fl container-down">下载APP</li>
-              <li className="fl container-li">
-                <CSSTransition in={isFocus} timeout={300} classNames="slide">
-                  <input
+            <div className="header-rigth-logoin">
+              <span className="register">注册</span>
+              <span className="write">写文章</span>
+            </div>
+            <div className="header-rigth-logoin">
+              <span className="setting">Aa</span>
+              <span className="login">登录</span>
+            </div>
+            <div className="header-container clearfix">
+              <ul>
+                <li className="fl container-index">首页</li>
+                <li className="fl container-down">下载APP</li>
+                <li className="fl container-li">
+                  <CSSTransition
+                    in={isFocus}
+                    timeout={300}
+                    classNames="slide"
+                  >
+                    <input
+                      className={
+                        isFocus ? "container-focuk" : "container-input"
+                      }
+                      type="text"
+                      placeholder="搜索"
+                      onFocus={this.props.handleFoucs}
+                      onBlur={this.props.handleBlur}
+                    />
+                  </CSSTransition>
+                  <i
                     className={
                       isFocus
-                        ? "container-focuk container-input"
-                        : "container-input"
+                        ? " iconfont icon-feather-blur-light-b focuk-iconft "
+                        : "iconfont icon-feather-blur-light-b input-serach"
                     }
-                    type="text"
-                    placeholder="搜索"
-                    onFocus={handleInputFocus}
-                    onBlur={handleInputBlur}
                   />
-                </CSSTransition>
-                <i
-                  className={
-                    isFocus
-                      ? " iconfont icon-feather-blur-light-b input-serach focuk-iconft "
-                      : "iconfont icon-feather-blur-light-b input-serach"
-                  }
-                />
-                <div
-                  onMouseOver={handlDivFoucs}
-                  onMouseLeave={handlDivBlur}
-                  className={isFocus||isHover ? "search-tip" : "search-tip hide"}
+                   <div
+                  // onMouseOver={handlDivFoucs}
+                  // onMouseLeave={handlDivBlur}
+                  // className={isFocus||isHover ? "search-tip" : "search-tip hide"}
                 >
                   <div className="search-trending">
                     <div className="trending-header">
@@ -90,38 +87,29 @@ const Header = props => {
                     </ul>
                   </div>
                 </div>
-              </li>
-            </ul>
+                </li>
+              </ul>
+            </div>
           </div>
-        </div>
-      </header>
-    </React.Fragment>
-  );
+        </header>
+      </React.Fragment>
+    );
+  }
+}
+const mapSateToProps = state => {
+  return { isFocus: state.getIn(["header", "isFocus"]) };
 };
-const stateToProps = state => {
+const mapDispatchToProps = dispatch => {
   return {
-    isFocus: state.getIn(["header", "isFocus"]),
-    isHover: state.getIn(["header", "isHover"])
-  };
-};
-const stateToDispatch = dispatch => {
-  return {
-    handleInputFocus() {
-      debugger
-      dispatch(handleInputFocus());
+    handleFoucs() {
+      dispatch(actionCreator.setFoucsAction());
     },
-    handleInputBlur() {
-      dispatch(handleInputBlur());
-    },
-    handlDivFoucs() {
-      dispatch(handlDivFoucs());
-    },
-    handlDivBlur() {
-      dispatch(handlDivBlur());
+    handleBlur() {
+      dispatch(actionCreator.setBlurAction());
     }
   };
 };
 export default connect(
-  stateToProps,
-  stateToDispatch
+  mapSateToProps,
+  mapDispatchToProps
 )(Header);

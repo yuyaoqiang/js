@@ -1,0 +1,1 @@
+export const HOME_LIST = "home/HOME_LIST"
