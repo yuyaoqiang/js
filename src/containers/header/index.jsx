@@ -1,10 +1,16 @@
 import React from "react";
 import { CSSTransition } from "react-transition-group";
 import { connect } from "react-redux";
+import {
+  handleInputFocus,
+  handleInputBlur,
+  handlDivFoucs,
+  handlDivBlur
+} from "../../actions/header";
 import "./header.scss";
 
 const Header = props => {
-  const { isFocus, handleInputFocus, handleInputBlur } = props;
+  const { isFocus, isHover,handleInputFocus, handleInputBlur ,handlDivFoucs,handlDivBlur } = props;
   return (
     <React.Fragment>
       <header className="header-wrap">
@@ -31,7 +37,11 @@ const Header = props => {
               <li className="fl container-li">
                 <CSSTransition in={isFocus} timeout={300} classNames="slide">
                   <input
-                    className={isFocus ? "container-focuk" : "container-input"}
+                    className={
+                      isFocus
+                        ? "container-focuk container-input"
+                        : "container-input"
+                    }
                     type="text"
                     placeholder="搜索"
                     onFocus={handleInputFocus}
@@ -41,10 +51,45 @@ const Header = props => {
                 <i
                   className={
                     isFocus
-                      ? " iconfont icon-feather-blur-light-b focuk-iconft "
+                      ? " iconfont icon-feather-blur-light-b input-serach focuk-iconft "
                       : "iconfont icon-feather-blur-light-b input-serach"
                   }
                 />
+                <div
+                  onMouseOver={handlDivFoucs}
+                  onMouseLeave={handlDivBlur}
+                  className={isFocus||isHover ? "search-tip" : "search-tip hide"}
+                >
+                  <div className="search-trending">
+                    <div className="trending-header">
+                      <span>热门搜索</span>
+                      <a href="/">换一批</a>
+                    </div>
+                    <ul className="trending-tag-wrap">
+                      <li>
+                        <a href="/">交友交友</a>
+                      </li>
+                      <li>
+                        <a href="/">交友</a>
+                      </li>
+                      <li>
+                        <a href="/">交友</a>
+                      </li>
+                      <li>
+                        <a href="/">交友</a>
+                      </li>
+                      <li>
+                        <a href="/">交友</a>
+                      </li>
+                      <li>
+                        <a href="/">交友</a>
+                      </li>
+                      <li>
+                        <a href="/">交友</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
               </li>
             </ul>
           </div>
@@ -54,21 +99,25 @@ const Header = props => {
   );
 };
 const stateToProps = state => {
-  return { isFocus: state.isFocus };
+  return {
+    isFocus: state.getIn(["header", "isFocus"]),
+    isHover: state.getIn(["header", "isHover"])
+  };
 };
 const stateToDispatch = dispatch => {
   return {
     handleInputFocus() {
-      const action = {
-        type: "search_foucs"
-      };
-      dispatch(action);
+      debugger
+      dispatch(handleInputFocus());
     },
     handleInputBlur() {
-      const action = {
-        type: "search_blur"
-      };
-      dispatch(action);
+      dispatch(handleInputBlur());
+    },
+    handlDivFoucs() {
+      dispatch(handlDivFoucs());
+    },
+    handlDivBlur() {
+      dispatch(handlDivBlur());
     }
   };
 };
