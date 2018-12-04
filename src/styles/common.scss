@@ -7,7 +7,7 @@ body {
   /* 不允许选中 */
   -webkit-user-select: none;
   user-select: none;
-
+  height:100%;
   /* 去掉默认点击高亮显示 */
   -webkit-tap-highlight-color: transparent;
   /*禁止长按链接与图片弹出菜单*/
@@ -175,11 +175,6 @@ a {
   font-size: 0;
   line-height: 0;
 }
-
-.clearfix:after {
-  clear: both;
-}
-
 .block {
   padding: 0;
   margin: 0;

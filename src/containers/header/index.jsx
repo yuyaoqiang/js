@@ -17,17 +17,19 @@ class Header extends React.Component {
         );
       }
     }
-    return isFocus || isShow ?((
+    return isFocus || isShow ? (
       <div className="search-trending">
         <div className="trending-header">
           <span>热门搜索</span>
-          <a href="#" onClick={()=>this.props.changePage(page,totalPage)}>换一批</a>
+          <a href="#" onClick={() => this.props.changePage(page, totalPage)}>
+            换一批
+          </a>
         </div>
         <ul className="trending-tag-wrap">{pageList}</ul>
       </div>
-    )):(
-      <div></div>
-    )
+    ) : (
+      <div />
+    );
   }
   render() {
     const { isFocus, list, isShow } = this.props;
@@ -117,11 +119,11 @@ const mapDispatchToProps = dispatch => {
     handleBlur() {
       dispatch(actionCreator.setBlurAction());
     },
-    changePage(page,totalPage){
-      if(page<totalPage){
-        dispatch(actionCreator.doChangePage(page+1))
-      }else{
-        dispatch(actionCreator.doChangePage(1))
+    changePage(page, totalPage) {
+      if (page < totalPage) {
+        dispatch(actionCreator.doChangePage(page + 1));
+      } else {
+        dispatch(actionCreator.doChangePage(1));
       }
     }
   };
