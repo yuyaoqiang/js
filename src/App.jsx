@@ -9,7 +9,7 @@ class App extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        <BrowserRouter>
+        <BrowserRouter >
         <React.Fragment>
           <Header/>
           <Route exact path="/" component={Content} />

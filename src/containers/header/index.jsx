@@ -2,8 +2,19 @@ import React from "react";
 import { CSSTransition } from "react-transition-group";
 import { connect } from "react-redux";
 import { actionCreator } from "./store";
+import { actionCreator as signActionCreator } from "../../components/sign/store";
+import { withRouter } from "react-router-dom";
+
 import "./header.scss";
 class Header extends React.Component {
+  constructor(props) {
+    super(props);
+    this.gotoFun = this.gotoFun.bind(this);
+  }
+  gotoFun(type) {
+    type === "register" ? this.props.gotoRegister() : this.props.gotoLogin();
+    this.props.history.push("/sign");
+  }
   getListAear() {
     const { isFocus, list, page, totalPage, isShow } = this.props;
     let array = list.toJS();
@@ -45,12 +56,17 @@ class Header extends React.Component {
             </div>
 
             <div className="header-rigth-logoin">
-              <span className="register">注册</span>
+              <span
+                className="register"
+                onClick={() => this.gotoFun("register")}
+              >
+                注册
+              </span>
               <span className="write">写文章</span>
             </div>
             <div className="header-rigth-logoin">
               <span className="setting">Aa</span>
-              <span className="login">登录</span>
+              <span className="login"  onClick={() => this.gotoFun("login")}>登录</span>
             </div>
             <div className="header-container clearfix">
               <ul>
@@ -106,6 +122,12 @@ const mapSateToProps = state => {
 };
 const mapDispatchToProps = dispatch => {
   return {
+    gotoRegister() {
+      dispatch(signActionCreator.setRegisterState());
+    },
+    gotoLogin() {
+      dispatch(signActionCreator.setLoginState());
+    },
     handleShowPage() {
       dispatch(actionCreator.doShowAction());
     },
@@ -131,4 +153,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapSateToProps,
   mapDispatchToProps
-)(Header);
+)(withRouter(Header));
