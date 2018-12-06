@@ -2,6 +2,7 @@ import React from "react";
 
 class Siderbar extends React.Component {
   render() {
+    let {autherList} = this.props;
     return (
       <div className="side-wrap">
         <a className="down-img" href="/">
@@ -23,7 +24,7 @@ class Siderbar extends React.Component {
             </a>
           </div>
           <ul className="attention-wrap">
-            {this.props.autherList.map((item, index) => {
+            { autherList ? autherList.map((item, index) => {
               return (
                 <li key={item.get("id")}>
                   <a className="head-author" href="/">
@@ -41,7 +42,7 @@ class Siderbar extends React.Component {
                   </a>
                 </li>
               );
-            })}
+            }) :null}
           </ul>
         </div>
       </div>

@@ -1,15 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-const TitleList = ({ ...props }) => {
-  function toDetail(id) {
-    debugger;
-    console.log(props);
-  }
+const TitleList = (props) => {
   return (
     <div className="list-wrap">
       <div className="spack-border" />
       <ul className="list-ul">
-        {props.homeList.map((item, index) => {
+        { props.homeList ? props.homeList.map((item, index) => {
           return (
             <li className="list-li" key={item.get("id")}>
               <a href="/" className="img-wrap">
@@ -39,7 +35,7 @@ const TitleList = ({ ...props }) => {
               </div>
             </li>
           );
-        })}
+        }) : null}
       </ul>
     </div>
   );
