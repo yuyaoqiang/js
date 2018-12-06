@@ -6,5 +6,8 @@ export default {
   },
   header: {
     searchList: "/api/searchList.json",
+  },
+  detail: {
+    getDetail: "/api/detail.json",
   }
 };
