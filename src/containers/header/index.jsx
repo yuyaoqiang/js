@@ -3,7 +3,7 @@ import { CSSTransition } from "react-transition-group";
 import { connect } from "react-redux";
 import { actionCreator } from "./store";
 import { actionCreator as signActionCreator } from "../../components/sign/store";
-import { withRouter } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
 import "./header.scss";
 class Header extends React.Component {
@@ -48,12 +48,14 @@ class Header extends React.Component {
       <React.Fragment>
         <header className="header-wrap">
           <div className="header-content">
-            <div className="header-left-title">
-              <img
-                src="http://cdn2.jianshu.io/assets/web/nav-logo-4c7bbafe27adc892f3046e6978459bac.png"
-                alt="简书"
-              />
-            </div>
+            <Link to="/">
+              <div className="header-left-title">
+                <img
+                  src="http://cdn2.jianshu.io/assets/web/nav-logo-4c7bbafe27adc892f3046e6978459bac.png"
+                  alt="简书"
+                />
+              </div>
+            </Link>
 
             <div className="header-rigth-logoin">
               <span
@@ -66,7 +68,9 @@ class Header extends React.Component {
             </div>
             <div className="header-rigth-logoin">
               <span className="setting">Aa</span>
-              <span className="login"  onClick={() => this.gotoFun("login")}>登录</span>
+              <span className="login" onClick={() => this.gotoFun("login")}>
+                登录
+              </span>
             </div>
             <div className="header-container clearfix">
               <ul>

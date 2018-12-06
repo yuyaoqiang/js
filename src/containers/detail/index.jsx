@@ -10,7 +10,11 @@ class Detail extends React.Component {
   render() {
     return (
       <div className="detail-wrap">
-        <div className="ad-wrap" />
+        <div className="ad-wrap" >
+        <a href="#">
+          <span>X</span>
+        </a>
+        </div>
         <div className="article-wrap">
           <h1>我是标题</h1>
           <div className="author-wrap">

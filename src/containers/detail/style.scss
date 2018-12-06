@@ -3,11 +3,26 @@
 
   .ad-wrap {
     position: fixed;
-    top: 100px;
-    right: 30px;
-    width: 50px;
-    height: 100px;
+    top: 80px;
+    right: 50%;
+    width: 180px;
+    margin-right: -560px;
     border: 1px solid #ddd;
+    a{
+      display: block;
+      width: 100%;
+      height: 260px;
+      background-image: url(//cdn2.jianshu.io/assets/web/web-note-ad-side-banner-22096669b4c4b91c3b9266894e951aef.png);
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: 50%;
+      span{
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        color: #979797;
+      }
+    }
   }
   .article-wrap {
     width: 640px;
