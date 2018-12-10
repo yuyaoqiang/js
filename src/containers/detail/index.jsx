@@ -65,7 +65,8 @@ const dipatchToProps = dispatch => {
     getDetailById(id) {
       dispatch(actionCreator.detail(id));
     },
-    closeAd() {
+    closeAd(event) {
+      event.stopPropagation();  
       dispatch(actionCreator.adShowAction());
     }
   };

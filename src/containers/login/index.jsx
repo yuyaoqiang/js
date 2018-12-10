@@ -2,19 +2,56 @@ import React from "react";
 import "./style.scss";
 import { connect } from "react-redux";
 import { createForm } from "rc-form";
+import {Modal} from "antd"
+import FormCreatHoc from "../../components/hocComponent/formCreatHOC"
 class Login extends React.Component {
+  constructor(){
+    super();
+ 
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  handleSubmit(){
+    this.props.form.validateFields((errors, values) => {
+        if(errors){
+          console.log(errors)
+          return;
+        }
+    })
+  }
   render() {
-    console.log(this.props.form);
-    let errors;
-    const { getFieldProps, getFieldError } = this.props.form;
+    const { getFieldProps} = this.props.form;
     return (
       <div className="login_wrap">
         <div className="phone_wrap">
           <input type="text" name="username" placeholder="手机号或邮箱" {...getFieldProps("username",{
-            onchange(){},
             validateFirst: true,
+            initialValue:"",
             rules:[
-              { required: true },
+              { required: true,
+                message: "手机号为必填" 
+              },
+              (rule, value, callback, source, options)=> {
+                let errors = [];
+                if (!/(\+86|0086)?\s*1[34578]\d{9}/.test(value)) {
+                  errors ="请输入有效的手机号码";
+                }
+                if (value.length === 0) {
+                  errors = [];
+                }
+                callback(errors);
+              }
+            ]
+          })} />
+          <i />
+        </div>
+        <div className="password_wrap">
+          <input type="password" name="password" placeholder="密码" {...getFieldProps("password",{
+            validateFirst: true,
+            initialValue:"",
+            rules:[
+              { required: true,
+                message: "密码必须填写" 
+              },
               {
                 min: 6,
                 message: "密码必须是6-16位"
@@ -35,15 +72,8 @@ class Login extends React.Component {
                 }
               }
             ]
-          })} />
+          })}/>
           <i />
-        </div>
-        <div className="password_wrap">
-          <input type="password" name="password" placeholder="密码" />
-          <i />
-        </div>
-        <div className="password_wrap">
-        {(errors = getFieldError('username')) ? errors.join(',') : null}
         </div>
         <div className="remenber fl">
           <input type="checkbox" />
@@ -52,7 +82,7 @@ class Login extends React.Component {
         <div className="quistion fr">
           <a href="#">登录遇到问题？</a>
         </div>
-        <button className="clearfix submit">登录</button>
+        <button className="clearfix submit" onClick={this.handleSubmit}>登录</button>
         <div className="more-sign">
           <h6>社交账号登录</h6>
           <ul>
@@ -74,4 +104,5 @@ class Login extends React.Component {
     );
   }
 }
-export default connect()(createForm()(Login));
+export default connect()(createForm()(FormCreatHoc(Login)));
+//export default connect()(FormCreatHoc(Login))

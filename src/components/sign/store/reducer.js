@@ -2,10 +2,13 @@ import { fromJS } from "immutable";
 import { actionTypes } from "./index";
 
 const initState = fromJS({
-    loginOrRegister:true //true为登陆,false为注册
+    loginOrRegister:true, //true为登陆,false为注册
+    user:{}
 })
 export default (state = initState,action)=>{
     switch(action.type){
+        case actionTypes.LOGIN:
+        return state.set("user",fromJS(action.data));
         case actionTypes.LINK_TO_LOGIN:
         return state.set("loginOrRegister",true);
         case actionTypes.LINK_TO_RIGISTER:
