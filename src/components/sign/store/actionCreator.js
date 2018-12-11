@@ -13,3 +13,7 @@ export const saveUser = data => ({
   type: actionTypes.SAVE_USER_INFO,
   data: data
 });
+export const loginOut = ()=>({
+    type: actionTypes.LOGIN_OUT,
+    data: null
+})

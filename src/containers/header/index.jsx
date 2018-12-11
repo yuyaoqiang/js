@@ -77,7 +77,7 @@ class Header extends React.Component {
             ) : (
               <div className="header-rigth-logoin">
                <span className="setting">Aa</span>
-                  <span className="login_out" onClick={() => this.gotoFun("login")}>
+                  <span className="login_out" onClick={() => this.props.loginOut()}>
                     退出
                   </span>
               </div>
@@ -138,6 +138,9 @@ const mapSateToProps = state => {
 };
 const mapDispatchToProps = dispatch => {
   return {
+    loginOut(){
+      dispatch(signActionCreator.loginOut());
+    },
     gotoRegister() {
       dispatch(signActionCreator.setRegisterState());
     },
