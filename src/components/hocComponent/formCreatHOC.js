@@ -7,8 +7,6 @@ const FormCreatHoc =(WrapperComponent) => {
       let errors;
       const props = {
         ...this.props,
-        handleSubmit: this.handleSubmit,
-        getField: this.getField
       };
       return (
       <React.Fragment>

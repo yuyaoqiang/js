@@ -3,18 +3,34 @@ import "./style.scss";
 import { connect } from "react-redux";
 import { createForm } from "rc-form";
 import { Modal, Spin } from "antd";
+import axios from "../../config/axios.config";
+import url from "../../config/ajaxUrl";
 import FormCreatHoc from "../../components/hocComponent/formCreatHOC";
+import { actionCreator } from "../../components/sign/store";
+import { withRouter } from "react-router-dom";
 class Login extends React.Component {
-  constructor() {
-    super();
-
+  constructor(props) {
+    super(props);
+    this.state = {
+      userName: "",
+      posswrod: ""
+    };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleSubmit() {
     this.props.form.validateFields((errors, values) => {
       if (errors) {
-        console.log(errors);
         return;
+      } else {
+        axios
+          .get(url.login.getUser, this.state)
+          .then(res => {
+            this.props.doSaveUser(res.data.data);
+            this.props.history.push("/");
+          })
+          .catch(err => {
+            Modal.error({ content: err });
+          });
       }
     });
   }
@@ -39,8 +55,12 @@ class Login extends React.Component {
                   }
                   if (value.length === 0) {
                     errors = [];
+                  } else {
+                    this.setState({
+                      userName: value
+                    });
+                    callback(errors);
                   }
-                  callback(errors);
                 }
               ]
             })}
@@ -71,7 +91,7 @@ class Login extends React.Component {
                     errors = "密码必须是6-16位";
                   } else {
                     this.setState({
-                      nameValid: true
+                      posswrod: value
                     });
                     callback(errors);
                   }
@@ -88,10 +108,9 @@ class Login extends React.Component {
         <div className="quistion fr">
           <a href="#">登录遇到问题？</a>
         </div>
-          <button className="clearfix submit" onClick={this.handleSubmit}>
-            登录
-          </button>
-
+        <button className="clearfix submit" onClick={this.handleSubmit}>
+          登录
+        </button>
         <div className="more-sign">
           <h6>社交账号登录</h6>
           <ul>
@@ -113,5 +132,14 @@ class Login extends React.Component {
     );
   }
 }
-export default connect()(createForm()(FormCreatHoc(Login)));
-//export default connect()(FormCreatHoc(Login))
+const dispatchMap = dispatch => {
+  return {
+    doSaveUser(data) {
+      dispatch(actionCreator.saveUser(data));
+    }
+  };
+};
+export default connect(
+  null,
+  dispatchMap
+)(createForm()(FormCreatHoc(withRouter(Login))));

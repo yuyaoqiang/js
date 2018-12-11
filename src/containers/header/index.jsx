@@ -43,7 +43,7 @@ class Header extends React.Component {
     );
   }
   render() {
-    const { isFocus, list, isShow } = this.props;
+    const { isFocus, list, isShow, login } = this.props;
     return (
       <React.Fragment>
         <header className="header-wrap">
@@ -56,22 +56,32 @@ class Header extends React.Component {
                 />
               </div>
             </Link>
-
-            <div className="header-rigth-logoin">
-              <span
-                className="register"
-                onClick={() => this.gotoFun("register")}
-              >
-                注册
-              </span>
-              <span className="write">写文章</span>
-            </div>
-            <div className="header-rigth-logoin">
-              <span className="setting">Aa</span>
-              <span className="login" onClick={() => this.gotoFun("login")}>
-                登录
-              </span>
-            </div>
+            {!login ? (
+              <React.Fragment>
+                <div className="header-rigth-logoin">
+                  <span
+                    className="register"
+                    onClick={() => this.gotoFun("register")}
+                  >
+                    注册
+                  </span>
+                  <span className="write">写文章</span>
+                </div>
+                <div className="header-rigth-logoin">
+                  <span className="setting">Aa</span>
+                  <span className="login" onClick={() => this.gotoFun("login")}>
+                    登录
+                  </span>
+                </div>
+              </React.Fragment>
+            ) : (
+              <div className="header-rigth-logoin">
+               <span className="setting">Aa</span>
+                  <span className="login_out" onClick={() => this.gotoFun("login")}>
+                    退出
+                  </span>
+              </div>
+            )}
             <div className="header-container clearfix">
               <ul>
                 <li className="fl container-index">首页</li>
@@ -121,7 +131,9 @@ const mapSateToProps = state => {
     list: state.getIn(["header", "list"]),
     page: state.getIn(["header", "page"]),
     totalPage: state.getIn(["header", "totalPage"]),
-    isShow: state.getIn(["header", "isShow"])
+    isShow: state.getIn(["header", "isShow"]),
+    login: state.getIn(["sign", "login"]),
+    user: state.getIn(["sign", "user"])
   };
 };
 const mapDispatchToProps = dispatch => {
