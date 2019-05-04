@@ -5,6 +5,7 @@ import createBrowserHistory from "history/createBrowserHistory"
 import Header from "./containers/header";
 import Content from "./containers/content";
 import Detail from "./containers/detail";
+import List from "./containers/list/mallList";
 import Sign from "./components/sign";
 import store from "./store";
 
@@ -19,6 +20,7 @@ class App extends React.Component {
           <Route exact path="/" component={Content} />
           <Route exact path="/sign" component={Sign} />
           <Route exact path="/detail" component={Detail} />
+          <Route exact path="/list" component={List} />
           </React.Fragment>
         </Router>
       </Provider>

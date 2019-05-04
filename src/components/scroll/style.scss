@@ -1,0 +1,37 @@
+.scroll-wrap {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  .scroll {
+    position: relative;
+    width: 100%;
+    background: #ffffff;
+    overflow: hidden;
+    position: inherit;
+    z-index: 1;
+    .pullup-wrapper {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 16px 0;
+    }
+  }
+}
+.pulldown-wrap {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all;
+}
+.loader-gif-container {
+  margin-top: 10px;
+  img {
+    width: 20px;
+    height: 20px;
+    display: block;
+  }
+}
