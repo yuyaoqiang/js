@@ -7,14 +7,19 @@ class Detail extends React.Component {
     let id = this.props.location.state.id;
     this.props.getDetailById(id);
   }
+  ad() {
+    return this.props.adShow ? (
+      <div className="ad-wrap">
+        <a href="#">
+          <span onClick={this.props.closeAd}>X</span>
+        </a>
+      </div>
+    ) : null;
+  }
   render() {
     return (
       <div className="detail-wrap">
-        <div className="ad-wrap" >
-        <a href="#">
-          <span>X</span>
-        </a>
-        </div>
+        {this.ad()}
         <div className="article-wrap">
           <h1>我是标题</h1>
           <div className="author-wrap">
@@ -40,8 +45,10 @@ class Detail extends React.Component {
               </div>
             </div>
           </div>
-          <div className="detail-conten-wrap"  dangerouslySetInnerHTML={{__html: this.props.detail.content}}>
-          </div>
+          <div
+            className="detail-conten-wrap"
+            dangerouslySetInnerHTML={{ __html: this.props.detail.content }}
+          />
         </div>
       </div>
     );
@@ -49,13 +56,18 @@ class Detail extends React.Component {
 }
 const stateToProps = state => {
   return {
-    detail: state.getIn(["detail", "detail"])
+    detail: state.getIn(["detail", "detail"]),
+    adShow: state.getIn(["detail", "adShow"])
   };
 };
 const dipatchToProps = dispatch => {
   return {
     getDetailById(id) {
       dispatch(actionCreator.detail(id));
+    },
+    closeAd(event) {
+      event.stopPropagation();  
+      dispatch(actionCreator.adShowAction());
     }
   };
 };

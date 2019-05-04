@@ -6,6 +6,10 @@ const  detailAction= (data)=>({
   data:data
 })
 
+export const adShowAction = ()=>({
+  type:actionTypes.SET_AD_STATE,
+  data:null
+})
 export const detail=(params)=>{
   return dispatch=>{
     return axios.get(ajaxUrl.detail.getDetail,params).then(res=>{

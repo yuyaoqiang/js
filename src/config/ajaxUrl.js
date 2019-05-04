@@ -9,5 +9,8 @@ export default {
   },
   detail: {
     getDetail: "/api/detail.json",
+  },
+  login:{
+    getUser:"/api/user.json"
   }
 };

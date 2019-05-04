@@ -1,84 +1,108 @@
 import axios from "axios";
+import { Modal } from "antd";
 // axios.defaults.baseURL = "localhost:8080";
 axios.defaults.timeout = 100000;
-axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
 axios.interceptors.request.use(
+  config => {
+    return config;
+  },
+  err => {
+    Modal.error({ content: "请求超时!" });
+    return Promise.resolve(err);
+  }
 );
 axios.interceptors.response.use(
-  response => {
-    return response;
+  data => {
+    if (data.status && data.status == 200) {
+      return data;
+    }
   },
   err => {
     if (err && err.response) {
       switch (err.response.status) {
         case 400:
-          err.message = "错误请求";
+          err.message = "请求错误(400)";
           break;
         case 401:
-          err.message = "未授权，请重新登录";
+          err.message = "未授权，请重新登录(401)";
           break;
         case 403:
-          err.message = "拒绝访问";
+          err.message = "拒绝访问(403)";
           break;
         case 404:
-          err.message = "请求错误,未找到该资源";
-          break;
-        case 405:
-          err.message = "请求方法未允许";
+          err.message = "请求出错(404)";
           break;
         case 408:
-          err.message = "请求超时";
+          err.message = "请求超时(408)";
           break;
         case 500:
-          err.message = "服务器端出错";
+          err.message = "服务器错误(500)";
           break;
         case 501:
-          err.message = "网络未实现";
+          err.message = "服务未实现(501)";
           break;
         case 502:
-          err.message = "网络错误";
+          err.message = "网络错误(502)";
           break;
         case 503:
-          err.message = "服务不可用";
+          err.message = "服务不可用(503)";
           break;
         case 504:
-          err.message = "网络超时";
+          err.message = "网络超时(504)";
           break;
         case 505:
-          err.message = "http版本不支持该请求";
+          err.message = "HTTP版本不受支持(505)";
           break;
         default:
-          err.message = `连接错误${err.response.status}`;
+          err.message = `连接出错(${err.response.status})!`;
       }
     } else {
-      err.message = "连接到服务器失败";
+      err.message = "连接服务器失败!";
     }
-    return Promise.resolve(err.response)
+    Modal.error({ content: err.message });
+    return Promise.resolve(err);
   }
 );
+
 export default {
-    //get请求
-      get (url,param) {
-        return new Promise((resolve,reject) => {
-          axios({
-            method: 'get',
-            url,
-            params: param,
-          }).then(res => {
-            resolve(res)
-          })
+  //get请求
+  get(url, param) {
+    return new Promise((resolve, reject) => {
+      axios({
+        method: "GET",
+        url,
+        params: param
+      })
+        .then(res => {
+          if (res.data.success === true) {
+            resolve(res);
+          } else {
+            reject(res);
+          }
         })
-      },
-    //post请求
-      post (url,param) {
-        return new Promise((resolve,reject) => {
-          axios({
-            method: 'post',
-            url,
-            data: param,
-          }).then(res => {
-            resolve(res)
-          })
+        .catch(err => {
+          reject(err);
+        });
+    });
+  },
+  //post请求
+  post(url, param) {
+    return new Promise((resolve, reject) => {
+      axios({
+        method: "POST",
+        url,
+        data: param
+      })
+        .then(res => {
+          if (res.data.success === true) {
+            resolve(res);
+          } else {
+            reject(res);
+          }
         })
-       }
-    }
+        .catch(err => {
+          reject(err);
+        });
+    });
+  }
+};
